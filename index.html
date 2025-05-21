@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xwork - The World's #1 Freelancing Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361EE;
+            --secondary-color: #3A0CA3;
+            --accent-color: #4CC9F0;
+            --text-color: #2B2C34;
+            --light-gray: #F8F9FA;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-shape {
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background-color: #fff;
+            clip-path: polygon(0 60%, 100% 0, 100% 100%, 0% 100%);
+            z-index: 1;
+        }
+        
+        .section-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        
+        .card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            height: 70px;
+            width: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            margin: 0 auto 1.5rem auto;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
+        
+        .cta-button {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 30px;
+            padding: 12px 32px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        
+        .cta-button:hover::before {
+            left: 0;
+        }
+        
+        .testimonial-card {
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(67, 97, 238, 0.1);
+            font-family: serif;
+        }
+        
+        .pricing-card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .pricing-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .pricing-popular {
+            position: relative;
+        }
+        
+        .pricing-popular::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 15px;
+            right: -35px;
+            background: var(--accent-color);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+        }
+        
+        .step-card {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .step-card::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            right: -30px;
+            width: 60px;
+            height: 2px;
+            background-color: var(--primary-color);
+            z-index: -1;
+        }
+        
+        .step-card:last-child::after {
+            display: none;
+        }
+        
+        .step-number {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        /* 3D Animation Effects */
+        .animated-3d {
+            transition: transform 0.5s ease;
+            perspective: 1000px;
+        }
+        
+        .animated-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg);
+        }
+        
+        .image-container {
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .image-container img {
+            transition: all 0.5s ease;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Animation for Numbers */
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stat-number {
+            animation: countUp 1s forwards;
+            display: inline-block;
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+        
+        /* For PDF Export */
+        @media print {
+            .hero-shape {
+                display: none;
+            }
+            
+            .card, .pricing-card, .testimonial-card {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                box-shadow: none !important;
+            }
+            
+            body {
+                min-height: auto;
+            }
+            
+            .pricing-popular::before {
+                display: none;
+            }
+        }
+        
+        /* 3D Card Effect */
+        .card-3d-wrapper {
+            perspective: 1500px;
+        }
+        
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: all 0.8s ease;
+        }
+        
+        .card-3d:hover {
+            transform: rotateY(15deg) rotateX(10deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">Xwork</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-6">
+                        <a href="#home" class="text-gray-800 hover:text-blue-600 font-medium transition duration-300">Home</a>
+                        <a href="#services" class="text-gray-800 hover:text-blue-600 font-medium transition duration-300">Services</a>
+                        <a href="#features" class="text-gray-800 hover:text-blue-600 font-medium transition duration-300">Features</a>
+                        <a href="#about" class="text-gray-800 hover:text-blue-600 font-medium transition duration-300">About Us</a>
+                        <a href="#how-it-works" class="text-gray-800 hover:text-blue-600 font-medium transition duration-300">How It Works</a>
+                        <a href="#pricing" class="text-gray-800 hover:text-blue-600 font-medium transition duration-300">Pricing</a>
+                        <a href="#contact" class="text-gray-800 hover:text-blue-600 font-medium transition duration-300">Contact</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <button class="mr-4 px-5 py-2 border border-blue-600 text-blue-600 font-medium rounded-full hover:bg-blue-600 hover:text-white transition duration-300">Login</button>
+                    <button class="px-5 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-full hover:opacity-90 transition duration-300">Sign Up</button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-800 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section min-h-screen flex items-center pt-20 pb-28">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 text-center md:text-left mb-12 md:mb-0">
+                    <h1 class="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" data-aos="fade-up">
+                        The World's <span class="text-yellow-300">#1</span> Freelancing Platform
+                    </h1>
+                    <p class="text-white text-lg md:text-xl opacity-80 mb-8" data-aos="fade-up" data-aos-delay="100">
+                        Connect with top freelancers and businesses worldwide. Secure, efficient, and feature-rich platform for finding work, hiring talent, and managing projects.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4" data-aos="fade-up" data-aos-delay="200">
+                        <button class="cta-button mb-4 sm:mb-0">
+                            Find Talent
+                        </button>
+                        <button class="cta-button bg-white text-blue-600 hover:text-white">
+                            Find Work
+                        </button>
+                    </div>
+                    <div class="mt-12 flex justify-center md:justify-start space-x-8" data-aos="fade-up" data-aos-delay="300">
+                        <div class="text-center">
+                            <div class="text-white font-bold text-3xl stat-number">2M+</div>
+                            <div class="text-white text-sm opacity-80">Freelancers</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-white font-bold text-3xl stat-number">85K+</div>
+                            <div class="text-white text-sm opacity-80">Businesses</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-white font-bold text-3xl stat-number">$500M+</div>
+                            <div class="text-white text-sm opacity-80">Paid to Freelancers</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative" data-aos="fade-left">
+                    <div class="card-3d-wrapper">
+                        <div class="card-3d floating">
+                            <div class="relative">
+                                <img src="https://thumbs.dreamstime.com/b/professional-freelancer-working-remotely-laptop-cafe-smiling-young-female-freelancer-using-laptop-cafe-table-woman-304976238.jpg" alt="Professional Freelancer" class="rounded-xl shadow-2xl mx-auto" style="max-width: 90%;">
+                                <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="h-10 w-10 bg-green-500 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-check text-white"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-bold text-sm">Project Completed</p>
+                                            <p class="text-green-500 text-xs">$2,500 earned</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute -top-6 -left-6 bg-white p-4 rounded-lg shadow-lg">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="h-10 w-10 bg-blue-500 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-star text-white"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-bold text-sm">5-Star Rating</p>
+                                            <p class="text-blue-500 text-xs">Top Rated Freelancer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-shape"></div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-heading">Our Premium Services</h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                    Xwork offers a comprehensive suite of services designed to make freelancing and hiring simpler, safer, and more efficient for everyone involved.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="card bg-white p-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">Smart Talent Matching</h3>
+                    <p class="text-gray-600 text-center">
+                        Our AI-powered matching system connects businesses with the perfect freelancers based on skills, experience, and project requirements.
+                    </p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="card bg-white p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">Secure Payments</h3>
+                    <p class="text-gray-600 text-center">
+                        Our 5-layer security system ensures that all transactions are protected, with escrow options for milestone-based payments.
+                    </p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="card bg-white p-8" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">Project Management</h3>
+                    <p class="text-gray-600 text-center">
+                        Comprehensive tools for tracking milestones, managing deadlines, and maintaining clear communication throughout projects.
+                    </p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="card bg-white p-8" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">Real-time Collaboration</h3>
+                    <p class="text-gray-600 text-center">
+                        Chat, video calls, file sharing, and collaborative workspaces to keep teams connected and productive.
+                    </p>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="card bg-white p-8" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">Skills Development</h3>
+                    <p class="text-gray-600 text-center">
+                        Access to training resources, skill assessments, and certification programs to help freelancers grow professionally.
+                    </p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="card bg-white p-8" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">Contract Management</h3>
+                    <p class="text-gray-600 text-center">
+                        Legally-binding contract templates, e-signature capabilities, and dispute resolution services for peace of mind.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Showcase Section -->
+    <section id="features" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-heading">Powerful Platform Features</h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                    Discover the advanced features that make Xwork the leading freelancing platform in the world.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <!-- Left Feature Column -->
+                <div>
+                    <!-- Feature 1 -->
+                    <div class="flex mb-12" data-aos="fade-right">
+                        <div class="mr-6">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-3">Advanced Verification System</h3>
+                            <p class="text-gray-600">
+                                Identity verification, skill assessment, and background checks to ensure quality talent and trustworthy clients.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="flex mb-12" data-aos="fade-right" data-aos-delay="100">
+                        <div class="mr-6">
+                            <div class="feature-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-3">Global Opportunities</h3>
+                            <p class="text-gray-600">
+                                Access to international projects and talent, with multi-currency support and time zone management tools.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="flex" data-aos="fade-right" data-aos-delay="200">
+                        <div class="mr-6">
+                            <div class="feature-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-3">Mobile Experience</h3>
+                            <p class="text-gray-600">
+                                Fully responsive platform with dedicated mobile apps for iOS and Android to manage your work on the go.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Feature Image -->
+                <div class="relative" data-aos="fade-left">
+                    <div class="card-3d-wrapper">
+                        <div class="card-3d">
+                            <img src="https://sellfy.com/blog/wp-content/uploads/2023/06/sketchfab.png" alt="Digital Marketplace Platform" class="rounded-lg shadow-xl" />
+                        </div>
+                    </div>
+                    
+                    <!-- Feature Stats -->
+                    <div class="absolute -bottom-8 -left-8 bg-white p-5 rounded-lg shadow-lg">
+                        <div class="flex items-center space-x-3">
+                            <div class="h-12 w-12 bg-purple-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-chart-pie text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold">Platform Growth</p>
+                                <p class="text-purple-500">+127% this year</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- More Feature Rows -->
+                <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                    <!-- Feature 4 -->
+                    <div class="feature-card card bg-white p-8 text-center" data-aos="fade-up">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Instant Matching</h3>
+                        <p class="text-gray-600">
+                            Get matched with relevant projects or freelancers within seconds of posting.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 5 -->
+                    <div class="feature-card card bg-white p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <i class="fas fa-analytics"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Performance Analytics</h3>
+                        <p class="text-gray-600">
+                            Track your success metrics and optimize your profile or hiring practices.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 6 -->
+                    <div class="feature-card card bg-white p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">AI-Powered Tools</h3>
+                        <p class="text-gray-600">
+                            From auto-generated proposals to smart contract suggestions based on your history.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-heading">About Xwork</h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                    Learn about our mission, our journey, and the team behind the world's leading freelancing platform.
+                </p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0" data-aos="fade-right">
+                    <div class="image-container">
+                        <img src="https://www.krome.co.uk/wp-content/uploads/2022/03/Blog-Post-The-Advancements-of-Digital-Collaboration.jpg" alt="Business team collaboration" class="rounded-lg shadow-xl" />
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 lg:pl-16" data-aos="fade-left">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Our Story</h3>
+                    <p class="text-gray-600 mb-6">
+                        Founded in 2023 by LVS Private Limited Corporation, Xwork was born from a vision to revolutionize the freelancing industry. We identified key challenges in existing platforms: high commission rates, lack of security, poor matching algorithms, and limited collaboration tools.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Our team of industry experts and technology innovators set out to build a platform that addresses these challenges head-on. The result is Xwork - a comprehensive ecosystem that puts freelancers and businesses first, providing them with all the tools they need to succeed in the digital economy.
+                    </p>
+                    
+                    <h3 class="text-2xl font-bold text-gray-800 mt-10 mb-6">Our Mission</h3>
+                    <p class="text-gray-600 mb-8">
+                        Xwork exists to empower freelancers and businesses worldwide by providing a secure, efficient, and feature-rich platform for finding work, hiring talent, and managing projects—enabling success, growth, and meaningful professional connections.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center">
+                            <div class="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-users text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Top Team</h4>
+                                <p class="text-sm text-gray-500">Industry experts</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-building text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">LVS Corporation</h4>
+                                <p class="text-sm text-gray-500">Backed by industry leader</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-award text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Award Winning</h4>
+                                <p class="text-sm text-gray-500">Platform of the Year</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-heading">How Xwork Works</h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                    Follow these simple steps to start your freelancing journey or find the perfect talent for your projects.
+                </p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-center mb-16">
+                <div class="bg-blue-600 text-white py-3 px-8 rounded-full font-semibold mb-4 md:mb-0 md:mr-6" data-aos="fade-right">
+                    For Freelancers
+                </div>
+                <div class="bg-gray-200 text-gray-700 py-3 px-8 rounded-full font-semibold" data-aos="fade-left">
+                    For Clients
+                </div>
+            </div>
+            
+            <!-- Steps for Freelancers -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                <!-- Step 1 -->
+                <div class="step-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">1</div>
+                    <div class="card bg-white p-6 h-full">
+                        <h3 class="text-xl font-semibold mb-4">Create Your Profile</h3>
+                        <p class="text-gray-600">
+                            Sign up and complete your professional profile showcasing your skills, experience, and portfolio pieces. Add certifications and verification for better visibility.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">2</div>
+                    <div class="card bg-white p-6 h-full">
+                        <h3 class="text-xl font-semibold mb-4">Find Relevant Projects</h3>
+                        <p class="text-gray-600">
+                            Browse projects matched to your skills or receive AI-recommended opportunities directly to your dashboard. Filter by budget, timeline, and client ratings.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">3</div>
+                    <div class="card bg-white p-6 h-full">
+                        <h3 class="text-xl font-semibold mb-4">Submit Proposals & Get Hired</h3>
+                        <p class="text-gray-600">
+                            Send customized proposals to clients, negotiate terms, and secure projects. Start working with secure contracts and milestone-based payments.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-center mb-10" data-aos="flip-up">
+                <img src="https://www.datasciencecentral.com/wp-content/uploads/2022/10/AdobeStock_327294157-scaled.jpeg" alt="Team Collaboration" class="rounded-lg shadow-xl max-w-3xl w-full" />
+            </div>
+            
+            <div class="text-center mb-8" data-aos="fade-up">
+                <button class="cta-button">
+                    Start Your Freelancing Journey Today
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-heading">Success Stories</h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                    Hear from freelancers and clients who have transformed their businesses and careers with Xwork.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                            <img src="https://thumbs.dreamstime.com/b/professional-freelancer-working-remotely-laptop-cafe-smiling-young-female-freelancer-using-laptop-cafe-table-woman-304976238.jpg" alt="Sarah Johnson" class="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg">Sarah Johnson</h4>
+                            <p class="text-gray-500 text-sm">Graphic Designer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        "Xwork changed my freelancing career completely. Within three months, I found consistent work with high-quality clients who value my design skills. The platform's security and payment protection gave me the confidence to take on bigger projects."
+                    </p>
+                    <div class="flex text-yellow-500">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                            <img src="https://img.freepik.com/premium-photo/laptop-typing-happy-black-man-home-office-business-remote-work-reading-email-online-pc-computer-professional-freelancer-desk-blog-article-copywriting-creativity_590464-311981.jpg" alt="Michael Thomas" class="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg">Michael Thomas</h4>
+                            <p class="text-gray-500 text-sm">Web Developer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        "The collaborative tools on Xwork are game-changers. I can manage multiple projects with different clients all in one place. The platform's AI recommendations have also connected me with projects that perfectly match my skill set."
+                    </p>
+                    <div class="flex text-yellow-500">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                            <img src="https://www.flexjobs.com/blog/wp-content/uploads/2025/03/Top-30-Companies-Hiring-for-Remote-Freelance-Jobs.jpg" alt="Jessica Miller" class="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg">TechInnovate Inc.</h4>
+                            <p class="text-gray-500 text-sm">Software Company</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        "As a growing company, we needed access to specialized talent quickly. Xwork's verification system ensured we only interviewed pre-vetted professionals. We've hired over 30 freelancers through the platform, all exceeding our expectations."
+                    </p>
+                    <div class="flex text-yellow-500">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-heading">Affordable Plans</h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                    Choose the perfect plan for your freelancing or hiring needs, with transparent pricing and no hidden fees.
+                </p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row justify-center gap-8">
+                <!-- Free Plan -->
+                <div class="pricing-card bg-white flex-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-gray-100 p-8 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Basic</h3>
+                        <div class="text-5xl font-bold mb-4">$0<span class="text-lg font-normal text-gray-600">/mo</span></div>
+                        <p class="text-gray-600">Perfect for getting started</p>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Limited profile customization</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Basic search functionality</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Up to 10 proposals per month</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Standard commission: 15%</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-times-circle text-red-500 mr-3"></i>
+                                <span class="text-gray-400">Priority support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-times-circle text-red-500 mr-3"></i>
+                                <span class="text-gray-400">Featured profile</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-times-circle text-red-500 mr-3"></i>
+                                <span class="text-gray-400">Advanced analytics</span>
+                            </li>
+                        </ul>
+                        <div class="text-center">
+                            <button class="w-full py-3 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300">
+                                Get Started
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="pricing-card pricing-popular bg-white flex-1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-center text-white">
+                        <h3 class="text-2xl font-bold mb-2">Professional</h3>
+                        <div class="text-5xl font-bold mb-4">$29<span class="text-lg font-normal text-gray-200">/mo</span></div>
+                        <p>Most popular choice</p>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Full profile customization</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Advanced search & filters</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Unlimited proposals</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span><b>Special Offer:</b> 0% commission for 6 months</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Priority support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Featured profile</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-times-circle text-red-500 mr-3"></i>
+                                <span class="text-gray-400">Advanced analytics</span>
+                            </li>
+                        </ul>
+                        <div class="text-center">
+                            <button class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:opacity-90 transition duration-300">
+                                Choose Plan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Business Plan -->
+                <div class="pricing-card bg-white flex-1" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-gray-100 p-8 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Enterprise</h3>
+                        <div class="text-5xl font-bold mb-4">$99<span class="text-lg font-normal text-gray-600">/mo</span></div>
+                        <p class="text-gray-600">For businesses and teams</p>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Everything in Professional</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Team collaboration tools</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Bulk project posting</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Reduced commission: Only 5% after promo</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>24/7 dedicated support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Featured profile & company page</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Advanced analytics & reporting</span>
+                            </li>
+                        </ul>
+                        <div class="text-center">
+                            <button class="w-full py-3 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300">
+                                Contact Sales
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 max-w-3xl mx-auto bg-blue-50 rounded-xl p-8 border border-blue-200" data-aos="fade-up">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/4 mb-6 md:mb-0">
+                        <div class="h-24 w-24 rounded-full bg-blue-100 flex items-center justify-center mx-auto">
+                            <i class="fas fa-percentage text-blue-600 text-4xl"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-3/4 md:pl-8">
+                        <h3 class="text-xl font-bold mb-2 text-blue-600">Special Launch Offer!</h3>
+                        <p class="text-gray-700 mb-4">
+                            For a limited time, enjoy <strong>0% commission for 6 months</strong> on all paid plans. After the promotional period, benefit from our market-leading low commission rate of just 5%.
+                        </p>
+                        <p class="text-sm text-gray-500">
+                            *Terms and conditions apply. Offer valid for new accounts only.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-6">Ready to Transform Your Career or Business?</h2>
+                <p class="text-xl opacity-90 mb-8">
+                    Join the world's #1 freelancing platform today and experience the difference. Whether you're looking for work or searching for talent, Xwork has you covered.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button class="cta-button bg-white text-blue-600 hover:text-white">
+                        Find Talent
+                    </button>
+                    <button class="cta-button">
+                        Find Work
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact and Footer -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div class="lg:col-span-1">
+                    <div data-aos="fade-right">
+                        <h2 class="section-heading mb-6">Get in Touch</h2>
+                        <p class="text-gray-600 mb-8">
+                            Have questions about our platform? Want to learn more about how Xwork can help you? Reach out to our friendly team.
+                        </p>
+                        
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-map-marker-alt text-blue-600 mt-1 mr-4"></i>
+                                    <div>
+                                        <p>123 Innovation Avenue</p>
+                                        <p>Tech City, TC 54321</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-envelope text-blue-600 mr-4"></i>
+                                    <p>support@xworkplatform.com</p>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-phone-alt text-blue-600 mr-4"></i>
+                                    <p>+1 (555) 123-4567</p>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-2" data-aos="fade-left">
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-semibold mb-6">Send Us a Message</h3>
+                        <form>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="name" class="block text-gray-700 mb-2">Your Name</label>
+                                    <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-gray-700 mb-2">Your Email</label>
+                                    <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <label for="subject" class="block text-gray-700 mb-2">Subject</label>
+                                <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 mb-2">Your Message</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="cta-button w-full md:w-auto">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+                <div class="lg:col-span-2">
+                    <div class="mb-6">
+                        <span class="text-3xl font-bold">Xwork</span>
+                    </div>
+                    <p class="text-gray-400 mb-6 max-w-md">
+                        The world's #1 freelancing platform designed to connect talented professionals with businesses worldwide. Backed by LVS Private Limited Corporation.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">For Freelancers</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Find Work</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Create Profile</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Success Stories</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Resources</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">For Clients</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Post a Job</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Find Talent</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Enterprise Solutions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Success Stories</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Resources</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Leadership</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Press</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <p class="text-gray-400">© 2024 Xwork. All rights reserved. A product of LVS Private Limited Corporation.</p>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Site Map</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-600 text-white h-12 w-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-blue-700">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Back to Top Button Functionality
+        const backToTopButton = document.getElementById("back-to-top");
+        
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove("opacity-0", "invisible");
+                backToTopButton.classList.add("opacity-100", "visible");
+            } else {
+                backToTopButton.classList.remove("opacity-100", "visible");
+                backToTopButton.classList.add("opacity-0", "invisible");
+            }
+        });
+        
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+        
+        // Number Animation
+        function animateNumbers() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const options = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, options);
+            
+            statNumbers.forEach(number => {
+                observer.observe(number);
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', animateNumbers);
+    </script>
+</body>
+</html>
